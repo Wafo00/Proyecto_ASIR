@@ -1,6 +1,6 @@
 # Manual (provisional): acceso al servidor del centro desde casa
 
-Versión 0.1 · 18 de octubre de 2026 · **Borrador: pendiente de las respuestas del centro**
+Versión 0.2 · 18 de octubre de 2026 · **Borrador: pendiente de las respuestas del centro**
 
 Este manual se completará cuando el centro ceda el servidor y diga cómo se accede a él. Por ahora recoge lo que ya sabemos, lo que hay que preguntar y la estructura que tendrá.
 
@@ -18,9 +18,20 @@ Para trabajar en el servidor desde casa no hace falta ninguna máquina virtual e
 | Trabajar en el servidor Linux de nuestra empresa | SSH | Sí (`ssh usuario@ip` en PowerShell) |
 | Usar OP, las webs y Uptime Kuma | Navegador | Sí |
 
+## Las dos VPN
+
+Lo más probable es que haya dos VPN, cada una con su función:
+
+| VPN | De quién es | Para qué | Quién la usa |
+| --- | --- | --- | --- |
+| La del proyecto (WireGuard, trasladada desde la MV de casa) | Nuestra | Entrar en nuestras máquinas: OP, SSH a nuestro servidor Linux, las webs, y más adelante las sedes y el portátil de la demo | Todos: compañeros, docentes y administradores |
+| La del centro, si existe | Del centro | Entrar en la red del centro, sobre todo en la consola web de Proxmox | Solo quien administre Proxmox |
+
+Para usar OP basta con la del proyecto. Si el centro no abre el puerto UDP 51820, la nuestra no podrá recibir conexiones de fuera y habría que entrar por la del centro. Si el centro no tiene VPN propia, Proxmox solo se podrá administrar estando en el centro.
+
 ## Preguntas para el centro
 
-- [ ] ¿Cómo se accede desde fuera a la red del centro? ¿Hay una VPN propia? ¿Cuál y cómo se configura?
+- [ ] ¿Cómo se accede desde fuera a la red del centro? ¿Hay una VPN propia? ¿Cuál y cómo se configura? ¿Pueden usarla todos los miembros del grupo o solo quien administre Proxmox?
 - [ ] ¿Tendremos usuario propio en Proxmox? ¿Con qué permisos y qué cuotas de RAM, CPU y disco?
 - [ ] ¿Podemos crear redes virtuales propias (para las cuatro redes de nuestra empresa)?
 - [ ] ¿Se puede abrir el puerto UDP 51820 desde fuera hacia nuestra máquina? Lo necesitamos para mantener la VPN de OP sin cambiar los perfiles de nadie.
@@ -67,8 +78,12 @@ Si el centro permite el puerto UDP 51820 (ver preguntas), la idea es que **todo 
 
 Resultado esperado: los usuarios siguen entrando en `http://10.8.0.1:8080` con el mismo perfil, sin tocar nada. Si el centro no permite ese puerto, se repartirán perfiles nuevos.
 
+> [!IMPORTANT]
+> **Decidir el reparto de direcciones del centro antes de la mudanza.** Los perfiles actuales solo mandan por el túnel el tráfico hacia `10.8.0.1` (`AllowedIPs = 10.8.0.1/32`). Si en el centro hay más máquinas con direcciones propias (el firewall, otros servidores), habrá que ampliar `AllowedIPs` en los perfiles y repartirlos de nuevo. Mejor hacerlo una sola vez, con el reparto ya decidido. Lo que vaya en contenedores Docker dentro de la misma máquina comparte su dirección y no obliga a cambiar nada.
+
 ## Historial
 
 | Versión | Fecha | Cambios |
 | --- | --- | --- |
 | 0.1 | 18/10/2026 | Borrador inicial, a la espera de las respuestas del centro |
+| 0.2 | 18/10/2026 | Añadido el cortafuegos como paso obligatorio de la mudanza |
