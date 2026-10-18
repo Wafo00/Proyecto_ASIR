@@ -125,6 +125,13 @@ Montamos todo en cuatro sitios, cada uno con un propósito:
 
 Esquema de la red del proyecto (servidor del centro, dos sedes y portátil de la demo). Es un diagrama escrito como texto: GitHub lo dibuja solo y se puede editar aquí mismo, sin descargar nada.
 
+Esquema de la red del proyecto (servidor del centro, dos sedes y portátil de la demo):
+
+![Diagrama de red del proyecto](diagrama-red.png)
+
+<details>
+<summary>Ver o editar el diagrama como texto (Mermaid)</summary>
+
 ```mermaid
 flowchart TB
     PORT["<b>Portátil de la demo</b><br/>Entra por VPN y RDP"]
@@ -156,6 +163,8 @@ flowchart TB
 
     style FW fill:#ddf4ff,stroke:#0969da,stroke-width:2px
 ```
+
+</details>
 
 Las sedes y el portátil de la demo salen hacia el servidor del centro, así que no hace falta abrir puertos en casa de nadie, salvo para el túnel directo entre sedes (en el diagrama, entre las dos sedes), que sigue funcionando aunque el centro caiga. Es obligatorio por el diseño de la base de datos: la réplica viaja por él.
 
