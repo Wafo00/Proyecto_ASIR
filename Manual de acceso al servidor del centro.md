@@ -63,6 +63,7 @@ Si el centro permite el puerto UDP 51820 (ver preguntas), la idea es que **todo 
 2. Mantener la dirección `10.8.0.1` y el puerto 51820.
 3. Detener el cron de DuckDNS en la MV de casa y apuntar el nombre a la IP del centro.
 4. Migrar los datos de OP (base de datos y adjuntos) a una instalación con la misma versión, 17.9.2.
+5. **Activar el cortafuegos (ufw) antes de dar acceso a nadie**, con «denegar por defecto» y abriendo solo UDP 51820 desde fuera y SSH desde el túnel. Ojo: Docker añade sus propias reglas y se salta ufw, así que el puerto de OP hay que publicarlo solo en la dirección del túnel (`PORT=10.8.0.1:8080` en el `.env`) y comprobarlo con un escáner de puertos desde fuera.
 
 Resultado esperado: los usuarios siguen entrando en `http://10.8.0.1:8080` con el mismo perfil, sin tocar nada. Si el centro no permite ese puerto, se repartirán perfiles nuevos.
 
