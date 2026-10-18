@@ -7,19 +7,6 @@ Mientras el centro no ceda su servidor, OpenProject (OP) funciona en una máquin
 > [!IMPORTANT]
 > **Solo pasa por el túnel lo que va a OP.** Tu navegación normal, tu correo y lo demás siguen yendo por tu conexión de siempre: nadie ve tu tráfico ni se ralentiza tu internet.
 
-## Por qué usamos vpn para esto  
-Por cuatro motivos, de más práctico a más de fondo:
-
-Sin abrir algo, nadie de fuera llega a la MV. OP vive en casa, detrás del router. Para que los compañeros entren hay dos caminos: abrir el puerto de OP (8080) directamente a internet, o abrir una VPN. Y la primera es mala idea por lo siguiente.  
-Seguridad. Una web expuesta a internet recibe visitas de bots a las pocas horas, probando contraseñas y fallos conocidos. Además, OP va por HTTP sin certificado, así que las contraseñas viajarían en claro. Con WireGuard, en cambio:  
-- Solo se abre un puerto, y WireGuard ni siquiera responde a quien no tenga una clave válida: para un escáner, ese puerto parece cerrado.  
-- Todo el tráfico va cifrado dentro del túnel, aunque OP use HTTP.  
-- Cada dispositivo tiene su propia clave, que puedes anular sin afectar a nadie más.  
-- Y suma una segunda capa: aunque alguien robe un perfil, sigue necesitando un usuario de OP para entrar.  
-
-Coherencia con el proyecto. En el README se indica que OP no se expondría a internet y que todo se administraría por VPN: las sedes, el técnico de la demo, los comerciales con el móvil. Montarlo para OP es practicar a pequeña escala lo mismo que haremos en el proyecto, y es justo lo que un profesor de SAD querrá ver.
-La mudanza. Con la VPN, la dirección de OP (10.8.0.1:8080) y los perfiles pueden seguir igual cuando se pase al servidor del centro.
-
 ## Lo que necesitas
 
 - **Tu fichero de perfil** (`algo.conf`), que te entrega Jordi en persona, en un USB. Cada dispositivo tiene el suyo: el de casa no sirve para el PC de clase, ni al revés.
@@ -60,7 +47,7 @@ Una vez importado el perfil, puedes **borrar el fichero `.conf`** de la carpeta 
 ## En el ordenador (Linux)
 
 > [!NOTE]
-> Esta sección aún no se ha probado en nuestro entorno. Si la sigues, cuenta cómo te ha ido para confirmarla o corregirla.
+> Esta sección aún no se ha probado en nuestro entorno. Si la sigues, cuéntale a Jordi cómo te ha ido para confirmarla o corregirla.
 
 Hay dos formas: por terminal, que funciona en cualquier distribución, o integrada en el gestor de red del escritorio. Los comandos son para distribuciones basadas en Debian o Ubuntu; en otras, cambia `apt` por el gestor de paquetes que toque.
 
@@ -119,6 +106,18 @@ nmcli connection down tu-perfil
 ```
 
 Por defecto, NetworkManager activa la conexión sola al arrancar. Si prefieres activarla a mano, desactiva **Conectar automáticamente** en sus ajustes.
+
+## Entrar en el servidor por SSH (solo miembros del grupo)
+
+El túnel no va por puertos, sino por dirección: todo lo que vaya a `10.8.0.1` pasa por la VPN, sea al puerto que sea. Así que la misma conexión que usas para OP sirve para abrir una terminal en el servidor, con el túnel activo:
+
+```bash
+ssh tu-usuario@10.8.0.1
+```
+
+Funciona igual en PowerShell de Windows y en la terminal de Linux.
+
+Para entrar necesitas **tu propio usuario en el servidor**, con tu clave SSH. Igual que en OP, la VPN te deja llegar a la puerta y tu usuario y tu clave son la llave. Los usuarios del servidor aún no están creados: Jordi avisará cuando estén.
 
 ## Problemas frecuentes
 
