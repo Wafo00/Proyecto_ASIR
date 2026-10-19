@@ -1,8 +1,8 @@
 # Proyecto intermodular · 2º ASIR
 
-Borrador v0.6 · 19 de octubre de 2026 · Pendiente de aprobar por el grupo
+Versión 0.7 · 19 de octubre de 2026 · Aprobada por el grupo
 
-Montamos dos empresas ficticias y las conectamos: **la nuestra**, una pequeña empresa de servicios informáticos con taller, y **su primer cliente**, una empresa de importación y distribución con dos sedes. Nuestra empresa vive en un servidor del centro; cada sede del cliente, en un equipo distinto, unidas por una VPN. Lo defenderemos en 30-40 minutos, con una demostración en directo en la que cae una sede y la otra toma el relevo.
+Montamos dos empresas ficticias y las conectamos: **la nuestra**, una pequeña empresa de servicios informáticos con taller, y **su primer cliente**, una empresa de importación y distribución con dos sedes. Nuestra empresa vive en un servidor del centro; cada sede del cliente, en el PC de un miembro del grupo, unidas por una VPN. Lo defenderemos en 30-40 minutos, con una demostración en directo en la que cae una sede y la otra toma el relevo.
 
 Este README es el resumen. El detalle está en la [documentación](#documentación).
 
@@ -12,7 +12,7 @@ Este README es el resumen. El detalle está en la [documentación](#documentaci�
 - **La empresa cliente** tiene dos sedes. Cada una es un **Windows Server 2025** que lo hace todo (Active Directory, DNS, DHCP, archivos, base de datos y web) y un cliente **Windows 11** unido al dominio.
 - **Las sedes se unen por VPN** (WireGuard) entre ellas y con el servidor del centro. La base de datos **Oracle** tiene la principal en la sede A y una copia continua en la B. Si cae la A, se promueve la B. PostgreSQL queda como plan B.
 - **La defensa**: un portátil del centro hace de técnico de nuestra empresa, entra en las dos empresas y vemos caer la sede A y recuperarse. Antes, un bloque breve de IPE II sobre cómo nació nuestra empresa.
-- **Lo que solo se documenta**: copias de seguridad completas, SAI, la tienda y el taller de nuestra empresa, y las medidas de seguridad más avanzadas.
+- **Lo que solo se documenta**: copias de seguridad completas, SAI, el despliegue de equipos por red, la tienda y el taller de nuestra empresa, y las medidas de seguridad más avanzadas.
 
 ## Esquema de la red
 
@@ -37,7 +37,7 @@ flowchart TB
         CA -->|"entra con su usuario"| SA
     end
 
-    subgraph SEDEB["Sede B · equipo de un compañero o portátil del centro (dos MV)"]
+    subgraph SEDEB["Sede B · PC de un compañero (dos máquinas virtuales)"]
         SB["<b>MV 1 · Windows Server 2025</b><br/>AD, DHCP, DNS, archivos y web<br/>BD copia y web en reserva"]
         CB["<b>MV 2 · Windows 11</b><br/>Unido al dominio"]
         CB -->|"entra con su usuario"| SB
@@ -59,7 +59,7 @@ flowchart TB
 
 | Estado | Tema | Detalle |
 | --- | --- | --- |
-| Decidido | Dónde va cada cosa | Nuestra empresa, en el servidor del centro. Sede A, en el PC de Jordi. Sede B, en el equipo de un compañero o en un portátil del centro |
+| Decidido | Dónde va cada cosa | Nuestra empresa, en el servidor del centro. Sede A, en el PC de Jordi. Sede B, en el PC de un compañero (casi seguro), con un portátil del centro como alternativa |
 | Decidido | Sistemas | Linux y Docker en nuestra empresa; Windows Server 2025 y Windows 11 en las sedes |
 | Decidido | Base de datos | Oracle en las sedes (visto bueno de ASGBD), con réplica de A a B y promoción manual. PostgreSQL 18 como plan B |
 | Decidido | VPN | WireGuard, con el concentrador en el servidor del centro y un túnel directo entre sedes para la réplica |
@@ -108,7 +108,7 @@ El planning detallado, con fases, hitos y tareas, está en OpenProject.
 | [IPE II](docs/ipe-ii.md) | La parte de empresa: cómo nació nuestra empresa (preliminar) |
 | [Seguimiento](docs/seguimiento.md) | Preguntas pendientes, contenidos por ver, notas e historial de versiones |
 | [Glosario](docs/glosario.md) | Los tecnicismos del proyecto, explicados |
-| [Manuales](docs/manuales/) | Procedimientos paso a paso: [conectarse a OpenProject por VPN](docs/manuales/conexion-vpn-openproject.md), [montaje de esa VPN](docs/manuales/montaje-vpn-openproject.md) y [acceso al servidor del centro](docs/manuales/acceso-servidor-centro.md) (provisional) |
+| [Manuales](docs/manuales/) | Procedimientos paso a paso: [10 · montaje de la VPN de OpenProject](docs/manuales/10-montaje-vpn-openproject.md), [20 · conectarse a OpenProject por VPN](docs/manuales/20-conexion-vpn-openproject.md) y [30 · acceso al servidor del centro](docs/manuales/30-acceso-servidor-centro.md) (provisional). Numerados por orden de uso |
 
 ## Estado actual
 

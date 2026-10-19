@@ -29,7 +29,7 @@ El mayor riesgo es depender a la vez de tres sitios (el centro y dos casas) el d
 | El centro no nos cede el servidor, o lo comparte sin aislamiento suficiente | Montar todo en el equipo de Jordi (o uno más potente), con las sedes como redes internas de VirtualBox |
 | Una conexión doméstica falla (IP dinámica, CGNAT, router, corte) | Comprobar la IP el día antes y el mismo día; si aun así falla, desplegar esa sede en el equipo de Jordi |
 | La red del centro bloquea la VPN | Preguntar al docente de SRI por adelantado; el móvil como punto de acceso |
-| El equipo de la sede B (de un compañero o del centro) no tiene recursos suficientes, permisos de administrador o virtualización, o tiene políticas que impiden desactivar la VBS | Medirlo y comprobarlo pronto, y elegir el que mejor cumpla; si ninguno sirve, el equipo de Jordi asume esa sede |
+| El PC de la sede B no tiene recursos suficientes, permisos de administrador o virtualización, o tiene políticas que impiden desactivar la VBS | Medirlo y comprobarlo pronto; alternativa, un portátil del centro, y si tampoco sirve, el equipo de Jordi asume esa sede |
 | El hipervisor de Windows (VBS, integridad de memoria, Windows Hello) se queda activo en un anfitrión: VirtualBox va lento y las instalaciones se cuelgan | Desactivarlo antes de crear las MV y comprobarlo en `msinfo32` |
 | La edición de Oracle disponible no incluye Data Guard, o no funciona en Windows Server 2025 | PostgreSQL 18, con réplica continua gratuita y probada en Windows Server 2025 |
 | Oracle consume demasiada memoria para el equipo de la sede B | Ajustar la memoria de Oracle a la mínima razonable; si no basta, el equipo de Jordi asume esa sede |

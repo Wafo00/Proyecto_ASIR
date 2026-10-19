@@ -173,10 +173,10 @@ Claves del diseño del perfil:
 cd ~
 ./wg-alta.sh movil-jordi      10.8.0.2
 ./wg-alta.sh clase-jordi      10.8.0.3
-./wg-alta.sh boxeador-casa    10.8.0.4
-./wg-alta.sh boxeador-clase   10.8.0.5
-./wg-alta.sh futbolista-casa  10.8.0.6
-./wg-alta.sh futbolista-clase 10.8.0.7
+./wg-alta.sh companero1-casa  10.8.0.4
+./wg-alta.sh companero1-clase 10.8.0.5
+./wg-alta.sh companero2-casa  10.8.0.6
+./wg-alta.sh companero2-clase 10.8.0.7
 ./wg-alta.sh docente-sri      10.8.0.20
 ./wg-alta.sh docente-iaw      10.8.0.21
 ./wg-alta.sh docente-sad      10.8.0.22

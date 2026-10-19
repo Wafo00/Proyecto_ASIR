@@ -16,7 +16,7 @@ Para los docentes y el centro:
 
 Para el grupo:
 
-- [ ] RAM, CPU, virtualización activada y edición de Windows (la Home no acepta escritorio remoto entrante) en los equipos de los compañeros, para decidir entre el equipo de un compañero y un portátil del centro para la sede B.
+- [ ] Comprobar el PC de la sede B (casi seguro, el de un compañero): RAM, CPU, virtualización activada, edición de Windows (la Home no acepta escritorio remoto entrante) y que se pueda desactivar la VBS.
 - [ ] Comprobar si hay CGNAT en la línea de la sede B y si el router permite DNS dinámico y abrir puertos.
 - [ ] Decidir el motivo de la caída de la sede A (el gato o cualquier otra cosa que no sea Windows Update).
 - [ ] Decidir si se demuestra la restauración de una copia de seguridad y cómo.
@@ -56,3 +56,4 @@ Cada mes hay un hito en OpenProject, «Revisión de contenidos nuevos», en el q
 | 0.4 | 17/10/2026 | Borrador inicial completo |
 | 0.5 | 18/10/2026 | Windows Server 2025, PostgreSQL en las sedes y Oracle Free en nuestra empresa, sede B en equipo de un compañero o portátil del centro, recursos de las MV, plantillas con Sysprep, nuevos riesgos y contenidos por ver |
 | 0.6 | 19/10/2026 | Documentación dividida en un README breve y la carpeta `docs/`. Oracle en las sedes (visto bueno de ASGBD) con PostgreSQL como plan B; Fast-Start Failover en lugar de Patroni; más RAM para el servidor A y para OpenProject; bloque de IPE II en la defensa y reparto de tiempos; la restauración de la copia queda por decidir; el servidor del centro, previsto en un par de semanas |
+| 0.7 | 19/10/2026 | Proyecto aprobado por el grupo. Sede B, casi seguro, en el PC de un compañero. Despliegue de equipos solo documentado: FOG para el taller y para las sedes, y Windows Autopilot como alternativa moderna de Microsoft (WDS se retira). Manuales numerados por orden de uso |

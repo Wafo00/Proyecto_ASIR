@@ -31,7 +31,7 @@ Seguridad y continuidad:
 - **SAI:** uno para el servidor y el equipo de la tienda, con tiempo suficiente para apagarlos de forma ordenada, y otro aparte para el taller. Un corte en mitad de una actualización de BIOS puede dejar una placa inservible.
 - **Servidor seguro:** SSH solo con clave y solo por el túnel de la VPN, cortafuegos con «denegar por defecto» (ufw o nftables), actualizaciones automáticas y bloqueo de intentos fallidos (fail2ban). Ojo: Docker abre puertos por su cuenta y puede saltarse el cortafuegos. Se publican solo en la red interna y se comprueba con un escáner desde fuera.
 - **Acceso del técnico a domicilio:** una VPN personal por técnico, SSH con clave y, en lugar de una consola abierta, una carpeta con herramientas portables de código abierto a la que accede por SFTP. Además consulta, desde la intranet web, los datos del cliente que necesita: el historial de reparaciones (equipo, avería, estado, garantía y contacto), con permiso de lectura y, como mucho, para añadir notas a la reparación. No ve facturación ni datos de otros clientes, y cada acceso queda registrado: hay datos personales, así que se aplica el mínimo necesario.
-- **Instalación de equipos por red (FOG), deseable:** sirve para reinstalar los equipos del taller. Para la demostración basta enseñar su panel funcionando.
+- **Instalación de equipos por red (FOG), solo documentado:** desplegar imágenes en los equipos del taller y reinstalarlos por red. Se explica en la memoria y en la defensa; no se monta.
 - **Proxy de salida (Squid) para el taller**, opcional: filtra y registra la navegación por dominio, sin abrir el tráfico HTTPS.
 - **Base de datos:** Oracle Free (la edición gratuita) en un contenedor Docker. Al ser un solo servidor sin réplica, la edición gratuita basta. Consume unos 2-3 GB de RAM, a tener en cuenta al pedir recursos en Proxmox.
 
@@ -52,7 +52,7 @@ Cómo es cada sede (la simulamos con dos máquinas virtuales):
 - **Un cliente Windows 11 Pro** unido al dominio, como perfil representativo, con los recursos mínimos. En la memoria explicaremos que los demás equipos (de 7 a 14 por sede) serían copias de ese perfil, con las mismas políticas (GPO).
 - **Red:** el servidor tiene dos adaptadores, uno de red interna (la oficina) y otro en puente (salida a internet y a la VPN). Los trabajadores de la oficina solo tienen el interno y salen a través del servidor.
 - **Seguridad de nivel 1:** cortafuegos de Windows con «denegar por defecto», perfil de red público en el adaptador externo, administración (RDP) solo por la VPN, cuentas de administrador separadas, directivas de contraseñas por GPO y bloqueo tras fallos.
-- **Instalación de equipos por red:** el equivalente de FOG en Windows es WDS, que Microsoft ha recortado y retirará del todo a partir de la próxima versión de Windows Server. Por eso solo se menciona, con FOG o herramientas independientes como alternativa.
+- **Despliegue de equipos, solo documentado:** una imagen de Windows 11 con la suite ofimática y los programas de gestión, para instalar igual todos los equipos de la oficina. La herramienta clásica de Microsoft para esto, WDS, deja de incluirse después de Windows Server 2025, y su compañera MDT ya está retirada. Lo actual en el mundo Microsoft es **Windows Autopilot con Intune** (desde la nube, con licencias de Microsoft 365) o, en local, Configuration Manager, demasiado pesado para una empresa de este tamaño. Nuestra propuesta: desplegar la imagen con **FOG** desde nuestro servidor, que ya lo usamos para el taller y también despliega Windows, y explicar Autopilot como lo que haría el cliente si se pasara a Microsoft 365.
 
 Seguridad y continuidad del cliente:
 
@@ -67,7 +67,7 @@ Montamos todo en cuatro sitios, cada uno con un propósito:
 
 - **Servidor del centro (Proxmox).** Es el único punto siempre encendido y con conexión estable. Aloja el único servidor Linux del proyecto, el de nuestra empresa, con Docker: su web, OpenProject, Uptime Kuma y la base de datos Oracle Free. Además lleva el firewall virtual y el concentrador de la VPN y, si se monta la promoción automática, el observador de la base de datos de la empresa cliente. Necesitamos que nuestro entorno quede aislado del de otros grupos. El docente está de acuerdo en cedérnoslo; previsto en un par de semanas.
 - **Sede A: el equipo de Jordi (6 núcleos y 12 hilos, 32 GB).** Un solo PC con dos máquinas virtuales (servidor y cliente). Lleva la base de datos principal. También sirve de equipo de desarrollo y de plan B. Mientras no haya servidor en el centro, aloja además la MV de OpenProject.
-- **Sede B: el equipo de un compañero o un portátil prestado por el centro (16 GB DDR4 y SSD SATA).** Estará en casa de un compañero, con las mismas dos máquinas virtuales, la copia de la base de datos y la web en reserva. Sea cual sea el equipo, debe tener permisos de administrador, la virtualización activada en la BIOS y poder desactivar la seguridad basada en virtualización (VBS) de Windows.
+- **Sede B: el PC de un compañero (casi seguro), con un portátil del centro (16 GB DDR4 y SSD SATA) como alternativa.** Estará en casa de ese compañero, con las mismas dos máquinas virtuales, la copia de la base de datos y la web en reserva. Sea cual sea el equipo, debe tener permisos de administrador, la virtualización activada en la BIOS y poder desactivar la seguridad basada en virtualización (VBS) de Windows.
 - **Portátil de la demostración.** Un portátil prestado por el centro, conectado a un proyector o pantalla grande, que hace de técnico: entra por VPN y escritorio remoto a los servidores de cada sede y al de nuestra empresa. Si la sede B también va en un portátil del centro, serán dos portátiles distintos.
 
 Las sedes y el portátil de la demo salen hacia el servidor del centro, así que no hace falta abrir puertos en casa de nadie, salvo para el túnel directo entre sedes, que sigue funcionando aunque el centro caiga. Es obligatorio por el diseño de la base de datos: la réplica viaja por él.
@@ -94,7 +94,7 @@ Hay cuatro cosas que configurar con cuidado:
 | A (PC de Jordi, 32 GB) | Servidor `SEDEA-SRV01` | 4 | 8 GB | 80 GB |
 | A | Cliente Windows 11 | 2 | 3 GB | 64 GB |
 | A (provisional) | OpenProject (Ubuntu Server) | 2 | 6 GB | 40 GB |
-| B (16 GB como mínimo) | Servidor `SEDEB-SRV01` | 2-4, según el equipo | 6 GB | 80 GB |
+| B (PC de un compañero; 16 GB como mínimo) | Servidor `SEDEB-SRV01` | 2-4, según el equipo | 6 GB | 80 GB |
 | B | Cliente Windows 11 | 2 | 3 GB | 64 GB |
 
 El servidor de la sede A lleva 8 GB porque Oracle es exigente con la memoria; el de la B, algo menos, porque su base de datos es la copia y su web está en reserva. En la sede A quedan unos 15 GB para el anfitrión y en la B unos 7. OpenProject necesita al menos 6 GB: con 4 GB tira de memoria de intercambio. Ninguna MV debe tener más núcleos de los que tiene físicamente su anfitrión. La red interna de cada sede debe llamarse igual en el servidor y en el cliente (por ejemplo, `sedeA-lan`).
@@ -130,9 +130,9 @@ La columna de módulos es una primera estimación y hay que confirmarla con los 
 | OpenProject | Servidor Linux del centro (Docker); provisionalmente, en una MV del PC de Jordi | Planificar y repartir el trabajo del grupo | Contenedores |
 | Uptime Kuma | Servidor Linux del centro (Docker) | Panel con el estado de toda la infraestructura y un script que avisa de que la copia del día se ha hecho | Contenedores, SAD |
 | SFTP restringido a una carpeta | Servidor Linux de nuestra empresa | Que el técnico acceda a una carpeta con herramientas portables | ASO, SRI |
-| FOG, deseable | Servidor Linux de nuestra empresa | Reinstalar equipos del taller por red | SRI |
+| FOG, solo documentado | Servidor Linux de nuestra empresa | Desplegar imágenes en los equipos del taller y en los de las sedes del cliente | SRI |
 | Proxy de salida (Squid), opcional | Servidor Linux de nuestra empresa | Filtrar y registrar la navegación del taller por dominio | SRI, SAD |
-| WDS, solo documentado | Cada sede | El equivalente de FOG en Windows (en desuso) | SRI |
+| Windows Autopilot con Intune, solo documentado | En la nube de Microsoft | Lo que usaría el cliente para desplegar sus equipos si se pasara a Microsoft 365 | SRI |
 | Copias de seguridad, solo documentado | Cada empresa | Cada sede guarda la copia de la otra, más una copia física cifrada | SAD, ASGBD |
 | Intranet de reparaciones | Servidor Linux de nuestra empresa | Que el técnico consulte el historial de reparaciones de un cliente | IAW, ASGBD |
 
@@ -188,6 +188,6 @@ Si la tienda online se nos va de las manos, la simplificamos (solo catálogo y a
 
 Primero la infraestructura y después el sitio web: si el sitio web luce pero la promoción de la copia no funciona, se va a notar.
 
-1. **Imprescindible**: Active Directory en cada sede, DHCP y DNS, VPN entre sedes, firewall virtual con las cuatro redes de nuestra empresa, nginx con las dos webs y sus certificados, y base de datos con copia y promoción manual. Las copias de seguridad completas y los SAI solo se documentan.
-2. **Deseable**: sitio web en Python con las dos zonas, Uptime Kuma con un script que avise de que la copia del día se ha hecho, y FOG en nuestra empresa.
+1. **Imprescindible**: Active Directory en cada sede, DHCP y DNS, VPN entre sedes, firewall virtual con las cuatro redes de nuestra empresa, nginx con las dos webs y sus certificados, y base de datos con copia y promoción manual. Las copias de seguridad completas, los SAI y el despliegue de equipos por red solo se documentan.
+2. **Deseable**: sitio web en Python con las dos zonas, y Uptime Kuma con un script que avise de que la copia del día se ha hecho.
 3. **Opcional**: promoción automática con Fast-Start Failover y observador, una vez que todo lo demás funcione; tienda online completa con compra de prueba en la demostración, proxy de salida en el taller y un cortafuegos dedicado en las sedes si SAD lo pide.
