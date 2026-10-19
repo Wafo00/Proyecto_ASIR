@@ -1,5 +1,7 @@
 # Manual: conectarse a OpenProject por VPN
 
+[← Índice de manuales](README.md)
+
 Para: compañeros del grupo y docentes · Versión 1.1 · 18 de octubre de 2026
 
 Mientras el centro no ceda su servidor, OpenProject (OP) funciona en una máquina virtual del PC de Jordi. Para llegar a ella desde fuera de su casa se usa una VPN con WireGuard: un túnel privado y cifrado entre tu equipo y esa máquina. Este manual explica cómo instalarla y conectarte, en Windows, en Linux y en el móvil.

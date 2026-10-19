@@ -1,6 +1,6 @@
 # Riesgos y limitaciones
 
-[← Volver al README](../README.md)
+[Inicio](../README.md) · [Índice de la documentación](README.md)
 
 ## Limitaciones conocidas y cómo se arreglarían
 
@@ -42,4 +42,8 @@ El mayor riesgo es depender a la vez de tres sitios (el centro y dos casas) el d
 | Se cae algo el día de la defensa | Vídeos grabados de cada demostración clave, para proyectarlos y explicar en directo |
 | El túnel directo A-B no se puede montar (CGNAT, puerto cerrado en casa) | La réplica depende de él: se comprueba el primer día y, si falla, se montan las dos sedes en el equipo de Jordi |
 
-El guion de la demostración está en [La demostración](demostracion.md). Habrá que ensayarlo unos días antes y, una vez más, con el proyector.
+El guion de la demostración está en [La demostración](20-demostracion.md). Habrá que ensayarlo unos días antes y, una vez más, con el proyector.
+
+---
+
+[← La demostración](20-demostracion.md) · [Índice](README.md) · [IPE II →](40-ipe-ii.md)

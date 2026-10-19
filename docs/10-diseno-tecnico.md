@@ -1,6 +1,6 @@
 # Diseño técnico
 
-[← Volver al README](../README.md)
+[Inicio](../README.md) · [Índice de la documentación](README.md)
 
 ## Contenido
 
@@ -195,3 +195,7 @@ Primero la infraestructura y después el sitio web: si el sitio web luce pero la
 1. **Imprescindible**: Active Directory en cada sede, DHCP y DNS, VPN entre sedes, firewall virtual con las cuatro redes de nuestra empresa, nginx con las dos webs y sus certificados, y base de datos con copia y promoción manual. Las copias de seguridad completas, los SAI y el despliegue de equipos por red solo se documentan.
 2. **Deseable**: sitio web en Python con las dos zonas, y Uptime Kuma con un script que avise de que la copia del día se ha hecho.
 3. **Opcional**: promoción automática con Fast-Start Failover y observador, una vez que todo lo demás funcione; tienda online completa con compra de prueba en la demostración, proxy de salida en el taller y un cortafuegos dedicado en las sedes si SAD lo pide.
+
+---
+
+[Índice](README.md) · [La demostración →](20-demostracion.md)

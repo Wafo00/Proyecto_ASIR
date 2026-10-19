@@ -1,6 +1,6 @@
 # Glosario
 
-[← Volver al README](../README.md)
+[Inicio](../README.md) · [Índice de la documentación](README.md)
 
 Palabras y tecnicismos que aparecen en la documentación del proyecto, porque son muchos.
 
@@ -29,3 +29,7 @@ Palabras y tecnicismos que aparecen en la documentación del proyecto, porque so
 | Sysprep y OVA | Sysprep prepara un Windows para clonarlo sin duplicar su identidad; OVA es el fichero con el que VirtualBox exporta e importa una MV completa |
 | VBS | Seguridad basada en virtualización: Windows enciende su propio hipervisor, y VirtualBox va más lento |
 | Evaluación y rearm | Windows Server de prueba, 180 días; `slmgr /rearm` reinicia ese plazo un número limitado de veces |
+
+---
+
+[← Seguimiento](50-seguimiento.md) · [Índice](README.md)

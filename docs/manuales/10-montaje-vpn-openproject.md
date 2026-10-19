@@ -1,5 +1,7 @@
 # Manual: montar una VPN WireGuard para acceder a OpenProject
 
+[← Índice de manuales](README.md)
+
 Versión 1.0 · 18 de octubre de 2026 · Probado y funcionando
 
 Este manual documenta cómo se montó el acceso remoto a OpenProject (OP) mientras está alojado en una máquina virtual del PC de Jordi. Todos los pasos están probados, salvo los marcados como **pendientes de probar**.

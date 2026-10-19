@@ -1,6 +1,6 @@
 # IPE II: cómo nació nuestra empresa
 
-[← Volver al README](../README.md)
+[Inicio](../README.md) · [Índice de la documentación](README.md)
 
 > [!NOTE]
 > **Estado preliminar.** Esta parte se desarrollará conforme avance el módulo de IPE II.
@@ -23,3 +23,7 @@ Una explicación breve, de **10 minutos como máximo**, al principio de la defen
 - [ ] Confirmar con el docente de IPE II qué se espera de esta parte.
 - [ ] Elegir los métodos del temario que mejor encajan.
 - [ ] Decidir el nombre de nuestra empresa (entre todos).
+
+---
+
+[← Riesgos y limitaciones](30-riesgos-y-limitaciones.md) · [Índice](README.md) · [Seguimiento →](50-seguimiento.md)

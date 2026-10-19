@@ -1,6 +1,6 @@
 # La demostración y el acceso remoto
 
-[← Volver al README](../README.md)
+[Inicio](../README.md) · [Índice de la documentación](README.md)
 
 ## Reparto del tiempo
 
@@ -8,7 +8,7 @@ La defensa dura como máximo 40 minutos. Este es el reparto propuesto:
 
 | Bloque | Minutos |
 | --- | --- |
-| IPE II: cómo nació nuestra empresa (preliminar, ver [IPE II](ipe-ii.md)) | 8-10 |
+| IPE II: cómo nació nuestra empresa (preliminar, ver [IPE II](40-ipe-ii.md)) | 8-10 |
 | Diseño de la infraestructura: diagrama y decisiones | 6-8 |
 | Demo: el técnico entra en las dos empresas | 6-8 |
 | Demo: cae la sede A y la B toma el relevo | 5-6 |
@@ -51,3 +51,7 @@ Las IP de casa cambian, así que cada uno:
 6. Repite todo antes de entrar a la defensa.
 
 Ensayo general unos días antes, y el móvil como punto de acceso si la red del centro bloquea la VPN. Vídeos grabados de cada demostración clave, por si algo falla el día de la defensa.
+
+---
+
+[← Diseño técnico](10-diseno-tecnico.md) · [Índice](README.md) · [Riesgos y limitaciones →](30-riesgos-y-limitaciones.md)

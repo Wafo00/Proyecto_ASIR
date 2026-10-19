@@ -1,5 +1,7 @@
 # Manual (provisional): acceso al servidor del centro desde casa
 
+[← Índice de manuales](README.md)
+
 Versión 0.2 · 18 de octubre de 2026 · **Borrador: pendiente de las respuestas del centro**
 
 Este manual se completará cuando el centro ceda el servidor y diga cómo se accede a él. Por ahora recoge lo que ya sabemos, lo que hay que preguntar y la estructura que tendrá.
