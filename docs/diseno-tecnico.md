@@ -31,7 +31,7 @@ Seguridad y continuidad:
 - **SAI:** uno para el servidor y el equipo de la tienda, con tiempo suficiente para apagarlos de forma ordenada, y otro aparte para el taller. Un corte en mitad de una actualización de BIOS puede dejar una placa inservible.
 - **Servidor seguro:** SSH solo con clave y solo por el túnel de la VPN, cortafuegos con «denegar por defecto» (ufw o nftables), actualizaciones automáticas y bloqueo de intentos fallidos (fail2ban). Ojo: Docker abre puertos por su cuenta y puede saltarse el cortafuegos. Se publican solo en la red interna y se comprueba con un escáner desde fuera.
 - **Acceso del técnico a domicilio:** una VPN personal por técnico, SSH con clave y, en lugar de una consola abierta, una carpeta con herramientas portables de código abierto a la que accede por SFTP. Además consulta, desde la intranet web, los datos del cliente que necesita: el historial de reparaciones (equipo, avería, estado, garantía y contacto), con permiso de lectura y, como mucho, para añadir notas a la reparación. No ve facturación ni datos de otros clientes, y cada acceso queda registrado: hay datos personales, así que se aplica el mínimo necesario.
-- **Instalación de equipos por red (FOG), solo documentado:** desplegar imágenes en los equipos del taller y reinstalarlos por red. Se explica en la memoria y en la defensa; no se monta.
+- **Instalación de equipos por red (FOG), solo documentado:** desplegar imágenes en los equipos del taller y reinstalarlos por red. FOG solo funciona sobre Linux, así que vive en nuestro servidor. Se explica en la memoria y en la defensa; no se monta.
 - **Proxy de salida (Squid) para el taller**, opcional: filtra y registra la navegación por dominio, sin abrir el tráfico HTTPS.
 - **Base de datos:** Oracle Free (la edición gratuita) en un contenedor Docker. Al ser un solo servidor sin réplica, la edición gratuita basta. Consume unos 2-3 GB de RAM, a tener en cuenta al pedir recursos en Proxmox.
 
@@ -52,7 +52,10 @@ Cómo es cada sede (la simulamos con dos máquinas virtuales):
 - **Un cliente Windows 11 Pro** unido al dominio, como perfil representativo, con los recursos mínimos. En la memoria explicaremos que los demás equipos (de 7 a 14 por sede) serían copias de ese perfil, con las mismas políticas (GPO).
 - **Red:** el servidor tiene dos adaptadores, uno de red interna (la oficina) y otro en puente (salida a internet y a la VPN). Los trabajadores de la oficina solo tienen el interno y salen a través del servidor.
 - **Seguridad de nivel 1:** cortafuegos de Windows con «denegar por defecto», perfil de red público en el adaptador externo, administración (RDP) solo por la VPN, cuentas de administrador separadas, directivas de contraseñas por GPO y bloqueo tras fallos.
-- **Despliegue de equipos, solo documentado:** una imagen de Windows 11 con la suite ofimática y los programas de gestión, para instalar igual todos los equipos de la oficina. La herramienta clásica de Microsoft para esto, WDS, deja de incluirse después de Windows Server 2025, y su compañera MDT ya está retirada. Lo actual en el mundo Microsoft es **Windows Autopilot con Intune** (desde la nube, con licencias de Microsoft 365) o, en local, Configuration Manager, demasiado pesado para una empresa de este tamaño. Nuestra propuesta: desplegar la imagen con **FOG** desde nuestro servidor, que ya lo usamos para el taller y también despliega Windows, y explicar Autopilot como lo que haría el cliente si se pasara a Microsoft 365.
+- **Despliegue de equipos, solo documentado:** todos los equipos de la oficina deben quedar igual: Windows 11 con la suite ofimática, los programas de gestión, la configuración de la empresa y unidos al dominio. Queremos que cada sede pueda reinstalar un equipo **sin que un técnico tenga que desplazarse**: basta con una llamada telefónica para guiar al usuario.
+  - **Lo que montaría nuestra empresa ahora:** un **paquete de aprovisionamiento** (`.ppkg`, creado con Windows Configuration Designer) con los programas, la configuración y la unión al dominio, guardado en una carpeta compartida del servidor de cada sede. El usuario restablece el equipo y aplica el paquete, guiado por teléfono. Es local y gratuito, y no depende de la nube.
+  - **La evolución, cuando el cliente crezca:** **Windows Autopilot con Intune**. No hay imagen que mantener: el equipo llega con Windows de fábrica y, al iniciar sesión con la cuenta de la empresa, se configura solo desde la nube. Necesita licencias de Microsoft 365 y cuentas en Entra ID.
+  - **Por qué no WDS ni FOG:** WDS, la herramienta clásica de Microsoft, se incluye por última vez en Windows Server 2025 y ya no admite el método clásico de instalar Windows 11; su compañera MDT está retirada. FOG solo funciona sobre Linux, y el servidor de cada sede es Windows Server.
 
 Seguridad y continuidad del cliente:
 
@@ -130,9 +133,10 @@ La columna de módulos es una primera estimación y hay que confirmarla con los 
 | OpenProject | Servidor Linux del centro (Docker); provisionalmente, en una MV del PC de Jordi | Planificar y repartir el trabajo del grupo | Contenedores |
 | Uptime Kuma | Servidor Linux del centro (Docker) | Panel con el estado de toda la infraestructura y un script que avisa de que la copia del día se ha hecho | Contenedores, SAD |
 | SFTP restringido a una carpeta | Servidor Linux de nuestra empresa | Que el técnico acceda a una carpeta con herramientas portables | ASO, SRI |
-| FOG, solo documentado | Servidor Linux de nuestra empresa | Desplegar imágenes en los equipos del taller y en los de las sedes del cliente | SRI |
+| FOG, solo documentado | Servidor Linux de nuestra empresa | Desplegar imágenes en los equipos del taller | SRI |
+| Paquete de aprovisionamiento, solo documentado | Carpeta compartida del servidor de cada sede | Reinstalar y configurar los equipos de la oficina sin desplazar a un técnico | ASO, SRI |
 | Proxy de salida (Squid), opcional | Servidor Linux de nuestra empresa | Filtrar y registrar la navegación del taller por dominio | SRI, SAD |
-| Windows Autopilot con Intune, solo documentado | En la nube de Microsoft | Lo que usaría el cliente para desplegar sus equipos si se pasara a Microsoft 365 | SRI |
+| Windows Autopilot con Intune, solo documentado | En la nube de Microsoft | La evolución del despliegue cuando el cliente crezca y se pase a Microsoft 365 | ASO, SRI |
 | Copias de seguridad, solo documentado | Cada empresa | Cada sede guarda la copia de la otra, más una copia física cifrada | SAD, ASGBD |
 | Intranet de reparaciones | Servidor Linux de nuestra empresa | Que el técnico consulte el historial de reparaciones de un cliente | IAW, ASGBD |
 

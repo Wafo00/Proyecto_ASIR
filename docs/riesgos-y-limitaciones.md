@@ -4,7 +4,7 @@
 
 ## Limitaciones conocidas y cómo se arreglarían
 
-Somos conscientes de estas limitaciones y las explicaremos en la memoria y en la defensa, cada una con su solución futura.
+La empresa cliente está dando sus primeros pasos con una infraestructura propia: empezamos con lo que necesita hoy y con un presupuesto ajustado, y las mejoras se irán aplicando en todos los frentes conforme crezca. Somos conscientes de estas limitaciones y las explicaremos en la memoria y en la defensa, cada una con su solución futura.
 
 | Limitación | Qué haríamos si la empresa crece |
 | --- | --- |
@@ -19,6 +19,7 @@ Somos conscientes de estas limitaciones y las explicaremos en la memoria y en la
 | Nuestro servidor Linux no tiene alta disponibilidad | Un segundo nodo en Proxmox y copias fuera del centro |
 | IP dinámica en la simulación (las sedes reales tendrían IP fija) | Nada: la empresa real tendría IP fija. En la simulación se usa DNS dinámico |
 | Copias de seguridad solo documentadas | Un plan real con restauraciones periódicas y una copia fuera del sitio |
+| Despliegue de equipos con un paquete de aprovisionamiento local | Windows Autopilot con Intune, al pasar a Microsoft 365 |
 
 ## Riesgos y planes B
 
