@@ -24,7 +24,7 @@ Para el grupo:
 - [ ] Buscar nombres para nuestra empresa y para la empresa cliente. Bloquean el dominio de AD, los nombres DNS y los certificados.
 - [ ] Conseguir las licencias educativas antes de instalar AD en las sedes.
 - [ ] Medir el consumo de los servidores (y monitor y router...) de las sedes y nuestro servidor propio para dimensionar los SAI.
-- [ ] Regenerar `diagrama-red.png` a partir del texto Mermaid actualizado.
+- [x] Regenerar `diagrama-red.png` con los datos actualizados (fuente editable en `docs/diagramas/diagrama-red.html`).
 - [x] Montar OpenProject de prueba (MV de Ubuntu Server en el PC de Jordi).
 - [x] VPN WireGuard para acceder a OpenProject desde fuera.
 
