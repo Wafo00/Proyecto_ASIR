@@ -1,0 +1,63 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+  body { margin:0; width:2000px; height:1300px; background:#fff; font-family:Inter, Arial, sans-serif; color:#1f2328; position:relative; }
+  .grupo { position:absolute; background:#f6f8fa; border:2px solid #d0d7de; border-radius:14px; box-sizing:border-box; }
+  .grupo .t { position:absolute; left:28px; top:20px; font-size:27px; font-weight:700; }
+  .grupo .s { position:absolute; left:28px; top:57px; font-size:20px; color:#57606a; }
+  .caja { position:absolute; background:#fff; border:2.5px solid #8c959f; border-radius:14px; box-sizing:border-box; text-align:center; display:flex; flex-direction:column; justify-content:center; }
+  .caja b { font-size:28px; font-weight:700; margin-bottom:10px; }
+  .caja span { font-size:23px; line-height:36px; }
+  .caja .azul { color:#0969da; font-weight:700; }
+  .fw { background:#ddf4ff; border:4px solid #0969da; }
+  .et { position:absolute; font-size:22px; font-weight:700; }
+  .gris { color:#57606a; font-weight:400; font-size:21px; }
+</style></head><body>
+
+<div class="grupo" style="left:58px;top:36px;width:1885px;height:292px"><div class="t" style="left:42px;top:22px">Servidor del centro (Proxmox)</div></div>
+<div class="caja fw" style="left:100px;top:114px;width:571px;height:172px"><b>Firewall y VPN</b><span>Separa 4 redes<br>y une las sedes</span></div>
+<div class="caja" style="left:714px;top:114px;width:571px;height:172px"><b>Nuestra empresa</b><span>Servidor Linux:<br>web, BD (Oracle) y observador</span></div>
+<div class="caja" style="left:1328px;top:114px;width:571px;height:172px"><b>OpenProject y Uptime Kuma</b><span>en Docker</span></div>
+
+<div class="grupo" style="left:58px;top:515px;width:828px;height:471px"><div class="t">Sede A · PC de Jordi</div><div class="s">un PC con dos máquinas virtuales</div></div>
+<div class="caja" style="left:86px;top:617px;width:772px;height:158px"><b>Máquina virtual 1 · Windows Server 2025</b><span>AD, DHCP, DNS, archivos y sitio web</span><span class="azul">BD principal (Oracle) y sitio web activo</span></div>
+<div class="caja" style="left:86px;top:843px;width:772px;height:115px"><b style="margin-bottom:6px">Máquina virtual 2 · Windows 11</b><span>Unido al dominio, un perfil por sede</span></div>
+
+<div class="grupo" style="left:1114px;top:515px;width:829px;height:471px"><div class="t">Sede B · PC de un compañero</div><div class="s">un PC con dos máquinas virtuales</div></div>
+<div class="caja" style="left:1143px;top:617px;width:771px;height:158px"><b>Máquina virtual 1 · Windows Server 2025</b><span>AD, DHCP, DNS, archivos y sitio web</span><span class="azul">BD copia (Oracle) y sitio web en reserva</span></div>
+<div class="caja" style="left:1143px;top:843px;width:771px;height:115px"><b style="margin-bottom:6px">Máquina virtual 2 · Windows 11</b><span>Unido al dominio, un perfil por sede</span></div>
+
+<div class="caja" style="left:686px;top:1114px;width:628px;height:129px"><b style="margin-bottom:8px">Portátil de la demo</b><span style="font-size:21px">Hace de técnico: entra por VPN y RDP</span></div>
+
+<svg width="2000" height="1300" style="position:absolute;left:0;top:0" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="az" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse" viewBox="0 0 12 12"><path d="M0,0 L12,6 L0,12 z" fill="#0969da" transform="scale(1)"/></marker>
+    <marker id="azg" markerWidth="34" markerHeight="34" refX="30" refY="17" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L34,17 L0,34 z" fill="#0969da"/></marker>
+    <marker id="ve" markerWidth="40" markerHeight="40" refX="36" refY="20" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0,0 L40,20 L0,40 z" fill="#1a7f37"/></marker>
+    <marker id="gr" markerWidth="28" markerHeight="28" refX="25" refY="14" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L28,14 L0,28 z" fill="#57606a"/></marker>
+    <marker id="mo" markerWidth="34" markerHeight="34" refX="30" refY="17" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L34,17 L0,34 z" fill="#8250df"/></marker>
+  </defs>
+  <!-- WireGuard sedes -> firewall -->
+  <path d="M243,515 L243,290" stroke="#0969da" stroke-width="4" fill="none" marker-end="url(#azg)"/>
+  <path d="M1428,515 L1428,413 L528,413 L528,290" stroke="#0969da" stroke-width="4" fill="none" marker-end="url(#azg)"/>
+  <!-- túnel A-B -->
+  <path d="M893,713 L1107,713" stroke="#1a7f37" stroke-width="5" fill="none" marker-start="url(#ve)" marker-end="url(#ve)"/>
+  <!-- cliente -> servidor -->
+  <path d="M471,843 L471,778" stroke="#57606a" stroke-width="4" fill="none" marker-end="url(#gr)"/>
+  <path d="M1528,843 L1528,778" stroke="#57606a" stroke-width="4" fill="none" marker-end="url(#gr)"/>
+  <!-- RDP -->
+  <path d="M800,1114 L800,991" stroke="#8250df" stroke-width="4" stroke-dasharray="12,9" fill="none" marker-end="url(#mo)"/>
+  <path d="M1200,1114 L1200,991" stroke="#8250df" stroke-width="4" stroke-dasharray="12,9" fill="none" marker-end="url(#mo)"/>
+  <!-- VPN portátil -> firewall -->
+  <path d="M686,1178 L22,1178 L22,200 L97,200" stroke="#0969da" stroke-width="4" stroke-dasharray="12,9" fill="none" marker-end="url(#azg)"/>
+</svg>
+
+<div class="et" style="left:257px;top:407px;color:#0969da">WireGuard</div>
+<div class="et" style="left:942px;top:380px;color:#0969da">WireGuard</div>
+<div class="et" style="left:900px;top:728px;width:200px;text-align:center;color:#1a7f37;line-height:29px">túnel directo<br>A-B<br>(réplica de<br>la BD)</div>
+<div class="et gris" style="left:493px;top:797px">entra con su usuario</div>
+<div class="et gris" style="left:1550px;top:797px">entra con su usuario</div>
+<div class="et" style="left:734px;top:1043px;color:#8250df">RDP</div>
+<div class="et" style="left:1217px;top:1043px;color:#8250df">RDP</div>
+<div class="et" style="left:37px;top:1079px;color:#0969da">VPN</div>
+</body></html>
