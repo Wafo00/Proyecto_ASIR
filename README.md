@@ -2,7 +2,7 @@
 
 Versión 0.7 · 19 de octubre de 2026 · Aprobada por el grupo
 
-Montamos dos empresas ficticias y las conectamos: **la nuestra**, una pequeña empresa de servicios informáticos con taller, y **su primer cliente**, una empresa de importación y distribución con dos sedes. Nuestra empresa vive en un servidor del centro; cada sede del cliente, en el PC de un miembro del grupo, unidas por una VPN. Lo defenderemos en 30-40 minutos, con una demostración en directo en la que cae una sede y la otra toma el relevo.
+Montamos dos empresas ficticias y las conectamos: **la nuestra**, una pequeña empresa de servicios informáticos con taller, y **su primer cliente**, una empresa de importación y distribución con dos sedes, en Granada (sede A) y Málaga (sede B). Nuestra empresa vive en un servidor del centro; cada sede del cliente, en el PC de un miembro del grupo, unidas por una VPN. Lo defenderemos en 30-40 minutos, con una demostración en directo en la que cae una sede y la otra toma el relevo.
 
 Este README es el resumen. El detalle está en la [documentación](#documentación).
 
@@ -16,7 +16,7 @@ Este README es el resumen. El detalle está en la [documentación](#documentaci�
 ## El proyecto en cinco puntos
 
 - **Nuestra empresa** vive en un servidor Linux del centro (Proxmox): cuatro redes separadas por un firewall virtual, web con blog, intranet de reparaciones, base de datos Oracle, OpenProject y un panel de estado (Uptime Kuma).
-- **La empresa cliente** tiene dos sedes. Cada una es un **Windows Server 2025** que lo hace todo (Active Directory, DNS, DHCP, archivos, base de datos y web) y un cliente **Windows 11** unido al dominio.
+- **La empresa cliente** tiene dos sedes, en Granada (A) y Málaga (B), y comerciales de calle por toda España. Cada sede es un **Windows Server 2025** que lo hace todo (Active Directory, DNS, DHCP, archivos, base de datos y web) y un cliente **Windows 11** unido al dominio.
 - **Las sedes se unen por VPN** (WireGuard) entre ellas y con el servidor del centro. La base de datos **Oracle** tiene la principal en la sede A y una copia continua en la B. Si cae la A, se promueve la B. PostgreSQL queda como plan B.
 - **La defensa**: un portátil del centro hace de técnico de nuestra empresa, entra en las dos empresas y vemos caer la sede A y recuperarse. Antes, un bloque breve de IPE II sobre cómo nació nuestra empresa.
 - **Lo que solo se documenta**: copias de seguridad completas, SAI, el despliegue de equipos por red, la tienda y el taller de nuestra empresa, y las medidas de seguridad más avanzadas.
