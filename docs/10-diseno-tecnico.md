@@ -37,19 +37,19 @@ Seguridad y continuidad:
 
 ## La empresa cliente
 
-Nuestro primer cliente se dedica a la importación y distribución de artículos de regalo, y vende a tiendas y a clientes online. Tiene **dos sedes en grandes ciudades**, con entre 7 y 14 ordenadores cada una, repartidos en departamentos: comercial, import/export, diseño, contabilidad, RRHH, almacén y dirección.
+Nuestro primer cliente se dedica a la importación y distribución de artículos de regalo, y vende a tiendas y a clientes online. Tiene **dos sedes, en Granada (sede A) y Málaga (sede B)**, lo bastante cerca para que un técnico pueda acudir en el día, con 14 ordenadores cada una, repartidos en departamentos: comercial, import/export, diseño, contabilidad, RRHH, recepción, almacén y dirección. En el almacén trabajan además unas 20 personas por sede sin ordenador (solo el jefe de almacén tiene uno), de modo que la plantilla total ronda los 85 empleados, comerciales de calle incluidos.
 
 Lo que necesita:
 
 - **Identidad y permisos centralizados** en cada sede (Active Directory).
 - **Conexión segura entre sedes** mediante VPN, con copias de seguridad.
-- Una **zona de comerciales en el sitio web**, para los comerciales de calle: consultar el stock en tiempo real y ver el estado de pedidos e incidencias. Los comerciales no trabajan en las sedes: en el departamento comercial de cada sede hay encargados que coordinan a los comerciales de cada zona geográfica.
+- Una **zona de comerciales en el sitio web**, para los comerciales de calle: consultar el stock en tiempo real y ver el estado de pedidos e incidencias. Los comerciales no trabajan en las sedes: en el departamento comercial de cada sede hay encargados que coordinan a los comerciales de cada zona geográfica. Son unos 20 comerciales para toda España: uno por comunidad autónoma y dos o tres en las más pobladas (Madrid, Cataluña, País Vasco y Navarra, y Andalucía); el de Valencia cubre también Murcia, por ahora.
 - Una **web para clientes**: catálogo, alta, modificar sus datos y hacer pedidos. Es la parte más compleja, porque exige datos siempre actualizados (stock, precios, productos, clientes). En la demostración la dejamos en lo mínimo: ver productos con su stock y crear un pedido.
 
 Cómo es cada sede (la simulamos con dos máquinas virtuales):
 
 - **Un servidor Windows Server 2025 que lo hace todo:** Active Directory, DHCP, DNS, carpetas compartidas, base de datos (Oracle) y web. Es lo habitual en una empresa pequeña, y nadie de la oficina lo toca: solo nosotros.
-- **Un cliente Windows 11 Pro** unido al dominio, como perfil representativo, con los recursos mínimos. En la memoria explicaremos que los demás equipos (de 7 a 14 por sede) serían copias de ese perfil, con las mismas políticas (GPO).
+- **Un cliente Windows 11 Pro** unido al dominio, como perfil representativo, con los recursos mínimos. En la memoria explicaremos que los demás equipos (hasta 14 por sede) serían copias de ese perfil, con las mismas políticas (GPO).
 - **Red:** el servidor tiene dos adaptadores, uno de red interna (la oficina) y otro en puente (salida a internet y a la VPN). Los trabajadores de la oficina solo tienen el interno y salen a través del servidor.
 - **Seguridad de nivel 1:** cortafuegos de Windows con «denegar por defecto», perfil de red público en el adaptador externo, administración (RDP) solo por la VPN, cuentas de administrador separadas, directivas de contraseñas por GPO y bloqueo tras fallos.
 - **Despliegue de equipos, solo documentado:** todos los equipos de la oficina deben quedar igual: Windows 11 con la suite ofimática, los programas de gestión, la configuración de la empresa y unidos al dominio. Queremos que cada sede pueda reinstalar un equipo **sin que un técnico tenga que desplazarse**: basta con una llamada telefónica para guiar al usuario.
