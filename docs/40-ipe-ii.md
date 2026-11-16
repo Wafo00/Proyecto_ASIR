@@ -3,7 +3,7 @@
 [Inicio](../README.md) · [Índice de la documentación](README.md)
 
 > [!NOTE]
-> **Versión inicial.** Este documento se amplía conforme avanza el módulo de IPE II. Los datos de Coral IT y de Dextro Imports son inventados para el ejercicio.
+> **Versión inicial.** Este documento se amplía conforme avanza el módulo de IPE II. Los datos de Coral IT y de Dextro Imports son especulaciones.
 
 ## Qué vamos a contar
 
@@ -41,7 +41,25 @@ Reparar en lugar de tirar es la base de Coral IT. Según las «R» de la econom�
 | **Renovar** (reacondicionar) | Ponemos a punto equipos usados para darles una segunda vida |
 | **Reciclar** | Lo que ya no tiene arreglo va a un gestor autorizado de residuos electrónicos |
 
-Se cumple el orden de prioridad que enseña el temario: primero reducir, luego reutilizar y, solo al final, reciclar.
+## Balance social: qué aporta Coral IT
+
+El **balance social** es la herramienta con la que una empresa evalúa y cuenta su desempeño social, laboral y medioambiental, más allá de los resultados económicos. Forma parte de su **responsabilidad social corporativa (RSC)**. Lo incluimos porque lo que hace Coral IT (reparar y reacondicionar equipos) encaja con el modelo ecosocial de **extensión de la vida útil del producto**: que lo que ya existe dure más.
+
+> [!NOTE]
+> Las cifras son especulativas, como el resto de datos de Coral IT.
+
+| Área | Indicador | Valor orientativo | Principio de RSC |
+| --- | --- | --- | --- |
+| Ambiental | Equipos reparados en lugar de sustituidos | Unos 600 al año | Sostenibilidad ambiental |
+| Ambiental | Equipos reacondicionados y vendidos con garantía | Unos 150 al año | Sostenibilidad ambiental |
+| Ambiental | Residuos electrónicos (RAEE) entregados a un gestor autorizado | Todo lo que no se puede reaprovechar | Gobernanza y cumplimiento legal |
+| Laboral | Formación técnica de la plantilla | Unas 20 horas por persona y año | Respeto a los derechos humanos y laborales |
+| Comunidad | Equipos reacondicionados donados a asociaciones o centros educativos | Unos 20 al año | Contribución al bienestar social |
+| Transparencia | Presupuesto y diagnóstico por escrito antes de reparar, y recomendación honesta de no reparar cuando no compensa | Siempre | Transparencia y rendición de cuentas |
+
+**Conclusión:** el balance es **positivo**. La actividad principal ya alarga la vida útil de los equipos y lo que no se puede aprovechar se recicla por vías autorizadas. Como mejoras, medir con más precisión los kilos de residuo evitado y formalizar las donaciones mediante convenios.
+
+Base teórica: Unidad 7 de IPE II (responsabilidad social corporativa, balance social y modelos de negocio ecosociales).
 
 ## Cómo nos organizamos (metodología ágil)
 
@@ -57,6 +75,7 @@ Trabajamos con un tablero de tareas, **OpenProject**, donde cada tarea avanza de
 ## Pendiente
 
 - [ ] Estudio previo de mercado y tarifas de Coral IT.
+- [ ] Ampliar el balance social con más indicadores y cifras reales, según oriente el docente.
 - [ ] Añadir más contenidos del temario conforme avance el módulo.
 
 ---
